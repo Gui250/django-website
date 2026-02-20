@@ -1,14 +1,19 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'tarefas/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
+{% block title %}Página Inicial{% endblock %}
 
-<body>
-    <h1>Home</h1>
-</body>
+{% block content %}
+<h2>Página oficial de tarefas</h2>
 
-</html>
+{% if tarefas %}
+<ul>
+    {% for tarefa in tarefas %}
+    <li>{{ tarefa.titulo }} - {{ tarefa.descricao }} - {% if tarefa.concluida %} (Concluida) {% else %} (Pendente)
+        {% endif %}</li>
+    {% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma tarefa encontrada.</p>
+{% endif %}
+
+{% endblock %}
